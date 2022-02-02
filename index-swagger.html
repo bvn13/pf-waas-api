@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>ReDoc</title>
+    <!-- needed for adaptive design -->
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="https://unpkg.com/swagger-ui-dist@4/swagger-ui.css">
+
+    <!--
+    ReDoc doesn't change outer page styles
+    -->
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <div id='api-spec'></div>
+    <script src="https://unpkg.com/swagger-ui-dist@4/swagger-ui-standalone-preset.js" charset="UTF-8"></script>
+    <script src="https://unpkg.com/swagger-ui-dist@4/swagger-ui-bundle.js" charset="UTF-8"></script>
+
+    <script>
+	if (document.readyState == 'loading') {
+		document.addEventListener("DOMContentLoaded", () => initRedoc());
+	} else {
+		initRedoc();
+	}
+
+    var api_url = 'https://profee-waas.github.io/pf-waas-api/waas-api.json';
+      
+	function initRedoc() {
+      const ui = SwaggerUIBundle({
+        url: api_url,
+        dom_id: '#api-spec',
+        deepLinking: true,
+        presets: [
+          SwaggerUIBundle.presets.apis,
+          SwaggerUIStandalonePreset
+        ],
+        plugins: [
+          SwaggerUIBundle.plugins.DownloadUrl
+        ],
+        layout: "StandaloneLayout",
+      })
+      window.ui = ui;
+	}
+    </script>
+
+  </body>
+</html>
