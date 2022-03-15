@@ -28,8 +28,9 @@
 		initRedoc();
 	}
 
-    var api_url = 'https://profee-waas.github.io/pf-waas-api/waas-api.json';
-      
+    var isLocalhost = location.hostname === "localhost" || location.hostname === "127.0.0.1";
+    var api_url = isLocalhost ? '/waas-api.json' : 'https://profee-waas.github.io/pf-waas-api/waas-api.json';
+
 	function initRedoc() {
 		Redoc.init(api_url, {"pathInMiddlePanel":true});
 	}
