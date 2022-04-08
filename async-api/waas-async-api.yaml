@@ -44,7 +44,7 @@ components:
                 format: date
               authTyme:
                 type: string
-                firmat: time
+                format: time
               postingDate:
                 type: string
               authCode:
