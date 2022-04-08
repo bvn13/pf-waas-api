@@ -1,0 +1,77 @@
+asyncapi: 2.3.0
+info:
+  title: Profee WAAS Notificatioins API
+  version: '1.0'
+  description: The following notifications will be sent to partner system. Please provide us with URLs which will be responsible in every notification.
+channels:
+  card/authorization:
+    publish:
+      message:
+        $ref: '#/components/messages/CardOperationNotificationDto'
+components:
+  messages:
+    CardOperationNotificationDto:
+      payload:
+        type: object
+        properties:
+          cardId:
+            type: string
+            description: Card ID
+          walletId:
+            type: string
+            description: Wallet ID
+          notification:
+            type: object
+            description: Notification about card operation authorization
+            properties:
+              uuid:
+                type: string
+              status:
+                type: string
+              type:
+                type: object
+                properties:
+                  code:
+                    type: string
+                  direction:
+                    type: string
+                  description:
+                    type: string
+              mcc:
+                type: number
+              authDate:
+                type: string
+                format: date
+              authTyme:
+                type: string
+                format: time
+              postingDate:
+                type: string
+              authCode:
+                type: string
+              rrn:
+                type: number
+              merchantId:
+                type: number
+              terminalId:
+                type: number
+              merchantName:
+                type: string
+              merchantCity:
+                type: string
+              merchantSum:
+                type: object
+                properties:
+                  amount:
+                    type: number
+                  currency:
+                    type: string
+              cardSum:
+                type: object
+                properties:
+                  amount:
+                    type: number
+                  currency:
+                    type: string
+              authDescription:
+                type: string
