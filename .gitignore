@@ -1,5 +1,8 @@
+.idea
 /.idea/.gitignore
 /.idea/misc.xml
 /.idea/modules.xml
 /.idea/pf-waas-api.iml
 /.idea/vcs.xml
+**.**~
+**.iml

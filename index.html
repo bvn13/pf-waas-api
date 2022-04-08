@@ -1,11 +1,12 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>ReDoc</title>
+    <title>ProFee WAAS API</title>
     <!-- needed for adaptive design -->
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,700|Roboto:300,400,700" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
 
     <!--
     ReDoc doesn't change outer page styles
@@ -18,22 +19,38 @@
     </style>
   </head>
   <body>
-    <redoc spec-url=''></redoc>
+
+    <div class="tabs is-large">
+      <ul>
+        <li id="page-api" class="is-active"><a>API</a></li>
+        <li id="page-async-api"><a>Async API</a></li>
+      </ul>
+    </div>
+
+    <div id="api">
+      <redoc spec-url=''></redoc>
+    </div>
+
+    <div id="async-api">
+
+    </div>
+
+
     <script src="https://cdn.jsdelivr.net/npm/redoc@next/bundles/redoc.standalone.js"> </script>
 
     <script>
-	if (document.readyState == 'loading') {
-		document.addEventListener("DOMContentLoaded", () => initRedoc());
-	} else {
-		initRedoc();
-	}
+      if (document.readyState == 'loading') {
+          document.addEventListener("DOMContentLoaded", () => initRedoc());
+      } else {
+          initRedoc();
+      }
 
-    var isLocalhost = location.hostname === "localhost" || location.hostname === "127.0.0.1";
-    var api_url = isLocalhost ? '/waas-api.json' : 'https://profee-waas.github.io/pf-waas-api/waas-api.json';
+      var isLocalhost = location.hostname === "localhost" || location.hostname === "127.0.0.1";
+      var api_url = isLocalhost ? '/api/waas-api.json' : 'https://profee-waas.github.io/pf-waas-api/api/waas-api.json';
 
-	function initRedoc() {
-		Redoc.init(api_url, {"pathInMiddlePanel":true});
-	}
+      function initRedoc() {
+          Redoc.init(api_url, {"pathInMiddlePanel":true});
+      }
     </script>
 
   </body>
