@@ -22,8 +22,8 @@
 
     <div class="tabs is-large">
       <ul>
-        <li id="page-api" class="is-active"><a>API</a></li>
-        <li id="page-async-api"><a>Async API</a></li>
+        <li id="page-api" class="is-active" onclick="showApi();"><a>API</a></li>
+        <li id="page-async-api" onclick="showAsyncApi();"><a>Async API</a></li>
       </ul>
     </div>
 
@@ -32,7 +32,7 @@
     </div>
 
     <div id="async-api">
-
+      <iframe src="async-api/site/index.html" width="100%" height="1000" seamless="yes"></iframe>
     </div>
 
 
@@ -40,16 +40,29 @@
 
     <script>
       if (document.readyState == 'loading') {
-          document.addEventListener("DOMContentLoaded", () => initRedoc());
+        document.addEventListener("DOMContentLoaded", () => initRedoc());
       } else {
-          initRedoc();
+        initRedoc();
       }
 
-      var isLocalhost = location.hostname === "localhost" || location.hostname === "127.0.0.1";
+      var isLocalhost = location.hostname === "localhost" || location.hostname === "127.0.0.1" || location.protocol === 'file:';
       var api_url = isLocalhost ? '/api/waas-api.json' : 'https://profee-waas.github.io/pf-waas-api/api/waas-api.json';
 
       function initRedoc() {
-          Redoc.init(api_url, {"pathInMiddlePanel":true});
+        Redoc.init(api_url, {"pathInMiddlePanel":true});
+        showApi();
+      }
+      function showApi() {
+        document.getElementById("page-api").classList.add("is-active");
+        document.getElementById("page-async-api").classList.remove("is-active");
+        document.getElementById("async-api").style.display = "none";
+        document.getElementById("api").style.display = "block";
+      }
+      function showAsyncApi() {
+        document.getElementById("page-async-api").classList.add("is-active");
+        document.getElementById("page-api").classList.remove("is-active");
+        document.getElementById("api").style.display = "none";
+        document.getElementById("async-api").style.display = "block";
       }
     </script>
 

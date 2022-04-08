@@ -4,20 +4,74 @@ info:
   version: 1.0.0
   description: This service is in charge of processing user signups
 channels:
-  card/authorization:
-    subscribe:
+  notifications/card/authorization:
+    publish:
       message:
-        $ref: '#/components/messages/UserSignedUp'
+        $ref: '#/components/messages/CardOperationNotificationDto'
 components:
   messages:
-    UserSignedUp:
+    CardOperationNotificationDto:
       payload:
         type: object
         properties:
-          displayName:
+          cardId:
             type: string
-            description: Name of the user
-          email:
+            description: Card ID
+          walletId:
             type: string
-            format: email
-            description: Email of the user
+            description: Wallet ID
+          notification:
+            type: object
+            description: Notification about card operation authorization
+            properties:
+              uuid:
+                type: string
+              status:
+                type: string
+              type:
+                type: object
+                properties:
+                  code:
+                    type: string
+                  direction:
+                    type: string
+                  description:
+                    type: string
+              mcc:
+                type: number
+              authDate:
+                type: string
+                format: date
+              authTyme:
+                type: string
+                firmat: time
+              postingDate:
+                type: string
+              authCode:
+                type: string
+              rrn:
+                type: number
+              merchantId:
+                type: number
+              terminalId:
+                type: number
+              merchantName:
+                type: string
+              merchantCity:
+                type: string
+              merchantSum:
+                type: object
+                properties:
+                  amount:
+                    type: number
+                  currency:
+                    type: string
+              cardSum:
+                type: object
+                properties:
+                  amount:
+                    type: number
+                  currency:
+                    type: string
+              authDescription:
+                type: string
