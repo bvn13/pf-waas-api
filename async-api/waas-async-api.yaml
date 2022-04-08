@@ -1,8 +1,8 @@
 asyncapi: 2.3.0
 info:
-  title: Account Service
-  version: 1.0.0
-  description: This service is in charge of processing user signups
+  title: Profee WAAS Notificatioins API
+  version: 1.0
+  description: The following notifications will be sent to partner system. Please provide us with URLs which will be responsible in every notification.
 channels:
   card/authorization:
     publish:
