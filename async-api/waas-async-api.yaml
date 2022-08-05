@@ -26,52 +26,80 @@ components:
             properties:
               uuid:
                 type: string
+                description: Universally unique identifier, which is set for the payment
               status:
                 type: string
+                description: Payment status to indicate whether authorization is successful, pending or failed
               type:
                 type: object
+                description: The detailed transaction type
                 properties:
                   code:
                     type: string
+                    description: The code used to identify the transaction type
                   direction:
                     type: string
+                    description: The direction of funds, which can be crediting or withdrawal ("DEBIT" or "CREDIT")
                   description:
                     type: string
+                    description: The description provided for the specified transaction type
               mcc:
                 type: number
+                description: Merchant category code for the operation
               authDate:
                 type: string
                 format: date
-              authTyme:
+                description: Authorization date for the operation
+              authTime:
                 type: string
                 format: time
+                description: Authorization time for the operation
               postingDate:
                 type: string
+                description: Posting date for the operation
               authCode:
                 type: string
+                description: Authorization code for the operation
               rrn:
                 type: number
+                description: Retrieval reference number, which is provided by the acquiring bank
               merchantId:
                 type: number
+                description: The identifier of the merchant
               terminalId:
                 type: number
+                description: The identifier of the terminal
               merchantName:
                 type: string
+                description: The name of the merchant
               merchantCity:
                 type: string
+                description: The city or location of the merchant
+                example: VISA DIRECT
               merchantSum:
                 type: object
+                description: The parameters of the payment on the merchant side
                 properties:
                   amount:
                     type: number
+                    description: The amount of the payment on the merchant side, can be null
                   currency:
                     type: string
+                    description: The currency on the merchant side, which is represented in alpha codes ISO 4217
               cardSum:
                 type: object
+                description: The parameters of the payment on the card side
                 properties:
                   amount:
                     type: number
+                    description: The amount of the payment on the card side, can be null
                   currency:
                     type: string
+                    description: The currency on the card side, which is represented in alpha codes ISO 4217
               authDescription:
                 type: string
+                description: A description to elaborate on the status of the operation
+                example: Approved by Issuer
+              otb:
+                type: number
+                description: Card balance after the transaction (with authorization)
