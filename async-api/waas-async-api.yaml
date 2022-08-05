@@ -8,6 +8,7 @@ channels:
     publish:
       message:
         $ref: '#/components/messages/CardOperationNotificationDto'
+        name: Card operation notification
         description: |
           WaaS partners receive notifications upon any attempt to make a card operation. 
           These notifications are supposed to inform the customer on the operation status and the remaining balance, or they can state the reason for denial. 
