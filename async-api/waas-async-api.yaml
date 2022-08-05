@@ -8,6 +8,21 @@ channels:
     publish:
       message:
         $ref: '#/components/messages/CardOperationNotificationDto'
+        description: |
+          WaaS partners receive notifications upon any attempt to make a card operation. 
+          These notifications are supposed to inform the customer on the operation status and the remaining balance, or they can state the reason for denial. 
+          These notifications have to be sent by the partner. 
+          The partner may choose an appropriate way to convey this information, be it an SMS or a push notification. 
+          Our service provides the parameters of the message, but not the message itself, so the partners may create their own customized templates.
+          
+          A partner may structure the messages according to the following templates:
+          
+          |Notification type|Conditions for the notification|Notification structure|
+          |-----------------|-------------------------------|----------------------|
+          |Load money |status = 2, type/code = 1  |Card [$cardId] has been loaded [$merchant/amount] [$merchant/currency] [$merchantName]. Balance [$otb] [$card/currency]. [$authDate] [$authTime] |
+          |Purchase |status = 2, type/code = 0 |Card [$cardId]. Purchase [$merchant/amount] [$merchant/currency] [$merchantName]. Balance [$otb] [$card/currency]. [$authDate] [$authTime] |
+          |Denial of operation |status = 0, type/code IN {0,1} |Card [$cardId]. Transaction [$merchant/amount] [$merchant/currency] refused by Card Issuer at [$merchantName]. [$authDate] [$authTime] |
+          |Cancellation of payments for goods and services |status = 1, type/code = 3 |Card [$cardId]. Transaction cancelled [$merchant/amount] [$merchant/currency] [$merchantName]. Balance [$otb] [$card/currency]. [$authDate] [$authTime] |
 components:
   messages:
     CardOperationNotificationDto:
@@ -54,6 +69,7 @@ components:
                 type: string
                 format: time
                 description: Authorization time for the operation
+                example: '18:30:15'
               postingDate:
                 type: string
                 description: Posting date for the operation
