@@ -30,9 +30,9 @@ channels:
         $ref: '#/components/messages/PaymentCompletedNotificationDto'
         name: Payment completed notification
         description: |
-          WaaS partner will receive notification when payment in Profee system get final status.
-          If "state" is SUCCESSFUL payment considered successful.
-          Otherwise, block "errors" will contain error code and human readable message, describing error reason.
+          WaaS partner will receive notification when payment in Profee system gets final status.
+          If "state" is "SUCCESSFUL" payment considered successful.
+          Otherwise, block "error" will contain error code and human readable message, describing error reason.
 components:
   messages:
     CardOperationNotificationDto:
@@ -141,11 +141,11 @@ components:
             description: Wallet ID
           state:
             type: string
-            description: State of payment processing. Can be SUCCESSFUL or FAILED
+            description: State of payment processing. Can be "SUCCESSFUL" or "FAILED"
             example: SUCCESSFUL
           error:
             type: object
-            description: If payment FAILED contains error details
+            description: If payment "FAILED" contains error details
             properties:
               code:
                 type: string
