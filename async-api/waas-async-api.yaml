@@ -31,7 +31,7 @@ channels:
         name: Payment completed notification
         description: |
           WaaS partner will receive notification when payment in Profee system get final status.
-          If block "state" is SUCCESSFUL payment considered successful.
+          If "state" is SUCCESSFUL payment considered successful.
           Otherwise, block "errors" will contain error code and human readable message, describing error reason.
 components:
   messages:
