@@ -24,6 +24,15 @@ channels:
           |Purchase |status = 2, type/code = 0 |Card [$cardId]. Purchase [$merchant/amount] [$merchant/currency] [$merchantName]. Balance [$otb] [$card/currency]. [$authDate] [$authTime] |
           |Denial of operation |status = 0, type/code IN {0,1} |Card [$cardId]. Transaction [$merchant/amount] [$merchant/currency] refused by Card Issuer at [$merchantName]. [$authDate] [$authTime] |
           |Cancellation of payments for goods and services |status = 1, type/code = 3 |Card [$cardId]. Transaction cancelled [$merchant/amount] [$merchant/currency] [$merchantName]. Balance [$otb] [$card/currency]. [$authDate] [$authTime] |
+  payment/notification:
+    publish:
+      message:
+        $ref: '#/components/messages/PaymentCompletedNotificationDto'
+        name: Payment completed notification
+        description: |
+          WaaS partner will receive notification when payment in Profee system get final status.
+          If block "error" is empty payment considered successful.
+          Otherwise, block "errors" will contain error code and human readable message, describing error reason.
 components:
   messages:
     CardOperationNotificationDto:
@@ -120,3 +129,23 @@ components:
               otb:
                 type: number
                 description: Card balance after the transaction (with authorization)
+    PaymentCompletedNotificationDto:
+      payload:
+        type: object
+        properties:
+          paymentId:
+            type: string
+            description: Payment ID
+          walletId:
+            type: string
+            description: Wallet ID
+          error:
+            type: object
+            description: If empty payment completed successfully
+            properties:
+              code:
+                type: string
+                description: The error code
+              description:
+                type: string
+                description: The error description
